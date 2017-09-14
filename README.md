@@ -3,7 +3,7 @@
 ### 설명
 ____________________________________________________
 
-![SpreadCubes]()
+![SpreadCubes](https://github.com/Hooooong/DAY9_SpreadCubes/blob/master/image/SpreadCubes.gif)
 
 - Property Animator 를 사용한 애니메이션 예제
 
