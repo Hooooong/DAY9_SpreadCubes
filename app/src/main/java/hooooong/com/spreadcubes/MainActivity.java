@@ -11,6 +11,7 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     boolean checkFlag = true;
+
     Button btnCube1;
     Button btnCube2;
     Button btnCube3;
@@ -35,6 +36,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         initListener();
     }
 
+    /**
+     * View 초기화
+     */
     public void initView() {
         btnCube1 = (Button) findViewById(R.id.btnCube1);
         btnCube2 = (Button) findViewById(R.id.btnCube2);
@@ -43,33 +47,46 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnSpread = (Button) findViewById(R.id.btnSpread);
     }
 
+    /**
+     * Listener 초기화
+     */
     public void initListener() {
         btnSpread.setOnClickListener(this);
     }
 
+    /**
+     * onClick 이벤트처리
+     * @param view
+     */
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btnSpread:
+                // 구분자를 통해
+                // Spread 인지 아닌지 검사
+
+
                 if (checkFlag) {
+                    // Spread 일 떄
                     spreadCube(btnCube1);
                     spreadCube(btnCube2);
                     spreadCube(btnCube3);
                     spreadCube(btnCube4);
-                    checkFlag = false;
-                    btnSpread.setText("CONVERSION");
                 } else {
+                    // Conversion 일 때
                     conversionCube(btnCube1);
                     conversionCube(btnCube2);
                     conversionCube(btnCube3);
                     conversionCube(btnCube4);
-                    checkFlag = true;
-                    btnSpread.setText("SPREAD");
                 }
                 break;
         }
     }
 
+    /**
+     * btnSpread 을 눌렀을 때(Spread) 발생하는 이벤트 처리
+     * @param view
+     */
     private void spreadCube(View view) {
        switch (view.getId()){
            case R.id.btnCube1:
@@ -93,8 +110,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                changeCube(view,width4,height4);
                break;
        }
+
+        checkFlag = false;
+        btnSpread.setText("CONVERSION");
     }
 
+    /**
+     * btnSpread 을 눌렀을 때(Spread) 발생하는 이벤트 처리
+     * @param view
+     */
     private void conversionCube(View view) {
         switch (view.getId()){
             case R.id.btnCube1:
@@ -118,9 +142,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 changeCube(view,width4,height4);
                 break;
         }
+
+        checkFlag = true;
+        btnSpread.setText("SPREAD");
     }
 
+    /**
+     * 애니메이션 처리
+     *
+     * @param view
+     * @param width
+     * @param height
+     */
     public void changeCube(View view, float width, float height){
+        /**
+         * Property 애니메이션 처리
+         *
+         * translationX, translationY : view 좌표 이동
+         */
         ObjectAnimator aniY = ObjectAnimator.ofFloat(
                 view, "translationY",  width
         );
@@ -134,6 +173,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         animatorSet.setDuration(1500);
         animatorSet.start();
 
+        /**
+         * Property 애니메이션 처리
+         *
+         * rotation : view 회전
+         */
         ObjectAnimator aniRotate = ObjectAnimator.ofFloat(
                 view, "rotation", 0f, 720f
         );
