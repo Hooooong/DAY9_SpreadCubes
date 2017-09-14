@@ -65,9 +65,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (view.getId()) {
             case R.id.btnSpread:
                 // 구분자를 통해
+
                 // Spread 인지 아닌지 검사
-
-
                 if (checkFlag) {
                     // Spread 일 떄
                     spreadCube(btnCube1);
