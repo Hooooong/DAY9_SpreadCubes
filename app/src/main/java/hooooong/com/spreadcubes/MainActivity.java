@@ -10,6 +10,8 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
+    // Spread, Conversion 구분값
     boolean checkFlag = true;
 
     Button btnCube1;
@@ -111,7 +113,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                break;
        }
 
+        // flag 변경
         checkFlag = false;
+        // button Text 변경
         btnSpread.setText("CONVERSION");
     }
 
@@ -143,7 +147,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
         }
 
+        // flag 변경
         checkFlag = true;
+        // Button text 번경
         btnSpread.setText("SPREAD");
     }
 
