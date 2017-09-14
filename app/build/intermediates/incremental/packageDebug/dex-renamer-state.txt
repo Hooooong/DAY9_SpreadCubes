@@ -1,0 +1,7 @@
+#Thu Sep 14 16:53:23 KST 2017
+base.0=C\:\\Users\\Android Hong\\Desktop\\android\\SpreadCubes\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run-bootstrap_6d5f5e0229d3552de2900d3e69f46d0d442ee55b
+renamed.1=classes.dex
+renamed.0=classes2.dex
+file.1=C\:\\Users\\Android Hong\\Desktop\\android\\SpreadCubes\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run_a71078862437cbb322d532955a87a9a47ab07a8b\\classes.dex
+base.1=C\:\\Users\\Android Hong\\Desktop\\android\\SpreadCubes\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run_a71078862437cbb322d532955a87a9a47ab07a8b
+file.0=C\:\\Users\\Android Hong\\Desktop\\android\\SpreadCubes\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run-bootstrap_6d5f5e0229d3552de2900d3e69f46d0d442ee55b\\classes.dex
