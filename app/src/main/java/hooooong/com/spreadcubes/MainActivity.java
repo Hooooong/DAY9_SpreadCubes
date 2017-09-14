@@ -20,15 +20,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btnCube4;
     Button btnSpread;
 
-    float width1 = 0;
-    float height1 = 0;
-    float width2 = 0;
-    float height2 = 0;
-    float width3 = 0;
-    float height3 = 0;
-    float width4 = 0;
-    float height4 = 0;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,7 +56,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (view.getId()) {
             case R.id.btnSpread:
                 // 구분자를 통해
-
                 // Spread 인지 아닌지 검사
                 if (checkFlag) {
                     // Spread 일 떄
@@ -91,27 +81,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void spreadCube(View view) {
        switch (view.getId()){
            case R.id.btnCube1:
-               width1 -= view.getWidth()/2;
-               height1 -= view.getHeight()/2;
-               changeCube(view,width1,height1);
+               changeCube(view,-view.getWidth()/2,-view.getHeight()/2);
                break;
            case R.id.btnCube2:
-               width2 += view.getWidth()/2;
-               height2 -= view.getHeight()/2;
-               changeCube(view,width2,height2);
+               changeCube(view,view.getWidth()/2,-view.getHeight()/2);
                break;
            case R.id.btnCube3:
-               width3 -= view.getWidth()/2;
-               height3 += view.getHeight()/2;
-               changeCube(view,width3,height3);
+               changeCube(view,-view.getWidth()/2,view.getHeight()/2);
                break;
            case R.id.btnCube4:
-               width4 += view.getWidth()/2;
-               height4 += view.getHeight()/2;
-               changeCube(view,width4,height4);
+               changeCube(view,view.getWidth()/2,view.getHeight()/2);
                break;
        }
-
         // flag 변경
         checkFlag = false;
         // button Text 변경
@@ -123,29 +104,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      * @param view
      */
     private void conversionCube(View view) {
-        switch (view.getId()){
-            case R.id.btnCube1:
-                width1 += view.getWidth()/2;
-                height1 += view.getHeight()/2;
-                changeCube(view,width1,height1);
-                break;
-            case R.id.btnCube2:
-                width2 -= view.getWidth()/2;
-                height2 += view.getHeight()/2;
-                changeCube(view,width2,height2);
-                break;
-            case R.id.btnCube3:
-                width3 += view.getWidth()/2;
-                height3 -= view.getHeight()/2;
-                changeCube(view,width3,height3);
-                break;
-            case R.id.btnCube4:
-                width4 -= view.getWidth()/2;
-                height4 -= view.getHeight()/2;
-                changeCube(view,width4,height4);
-                break;
-        }
-
+        //모든 Cube 가 0으로 이동해야 한다.
+        changeCube(view,0,0);
         // flag 변경
         checkFlag = true;
         // Button text 번경
@@ -166,10 +126,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
          * translationX, translationY : view 좌표 이동
          */
         ObjectAnimator aniY = ObjectAnimator.ofFloat(
-                view, "translationY",  width
+                view, "translationY",   width
         );
         ObjectAnimator aniX = ObjectAnimator.ofFloat(
-                view, "translationX",  height
+                view, "translationX",   height
         );
 
         AnimatorSet animatorSet = new AnimatorSet();
