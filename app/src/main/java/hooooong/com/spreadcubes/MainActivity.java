@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     /**
-     * btnSpread 을 눌렀을 때(Spread) 발생하는 이벤트 처리
+     * btnSpread 을 눌렀을 때(Conversion) 발생하는 이벤트 처리
      * @param view
      */
     private void conversionCube(View view) {

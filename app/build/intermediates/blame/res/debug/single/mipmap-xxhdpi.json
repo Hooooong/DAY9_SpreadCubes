@@ -1,5 +1,9 @@
 [
     {
+        "merged": "C:\\Users\\Hong\\Desktop\\Android Project\\DAY9_SpreadCubes\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi\\ic_launcher.png",
+        "source": "C:\\Users\\Hong\\Desktop\\Android Project\\DAY9_SpreadCubes\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
+    },
+    {
         "merged": "C:\\workspace\\android\\SpreadCubes\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi\\ic_launcher.png",
         "source": "C:\\workspace\\android\\SpreadCubes\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
     },
