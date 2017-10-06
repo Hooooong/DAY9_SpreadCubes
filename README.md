@@ -7,92 +7,52 @@ ____________________________________________________
 
 - Property Animator 를 사용한 애니메이션 예제
 
-
-### 소스코드
+### KeyPoint
 ____________________________________________________
 
-  - actity_main.xml
+- Animation 사용
 
-  ```xml
-  <?xml version="1.0" encoding="utf-8"?>
-  <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-      xmlns:app="http://schemas.android.com/apk/res-auto"
-      xmlns:tools="http://schemas.android.com/tools"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      tools:context="hooooong.com.spreadcubes.MainActivity">
+  - `View` Animation 이 아닌 `Property` Animation 을 사용하였다.
 
-      <Button
-          android:id="@+id/btnCube1"
-          android:layout_width="150dp"
-          android:layout_height="150dp"
-          android:text="Button"
-          app:layout_constraintBottom_toBottomOf="parent"
-          app:layout_constraintLeft_toLeftOf="parent"
-          app:layout_constraintRight_toRightOf="parent"
-          app:layout_constraintTop_toTopOf="parent"
-          app:layout_constraintVertical_bias="0.501"
-          tools:layout_editor_absoluteY="124dp"
-          android:textColor="#FFFFFF"
-          android:background="@android:color/black"/>
+  - Animator의 xml 파일이 아닌 Code 를 통해 Animation 을 설정하였다.
 
-      <Button
-          android:id="@+id/btnCube2"
-          android:layout_width="150dp"
-          android:layout_height="150dp"
-          android:text="Button"
-          app:layout_constraintBottom_toBottomOf="parent"
-          app:layout_constraintLeft_toLeftOf="parent"
-          app:layout_constraintRight_toRightOf="parent"
-          app:layout_constraintTop_toTopOf="parent"
-          app:layout_constraintVertical_bias="0.501"
-          tools:layout_editor_absoluteY="124dp"
-          android:background="@android:color/holo_blue_bright"/>
+  - X, Y, Rotation Animation 을 설정하였다.
 
-      <Button
-          android:id="@+id/btnCube3"
-          android:layout_width="150dp"
-          android:layout_height="150dp"
-          android:text="Button"
-          app:layout_constraintBottom_toBottomOf="parent"
-          app:layout_constraintLeft_toLeftOf="parent"
-          app:layout_constraintRight_toRightOf="parent"
-          app:layout_constraintTop_toTopOf="parent"
-          app:layout_constraintVertical_bias="0.501"
-          tools:layout_editor_absoluteY="124dp"
-          android:background="@android:color/holo_green_light"/>
+  ```java
+  ObjectAnimator aniY = ObjectAnimator.ofFloat(
+          view, "translationY",   width
+  );
+  ObjectAnimator aniX = ObjectAnimator.ofFloat(
+          view, "translationX",   height
+  );
 
-      <Button
-          android:id="@+id/btnCube4"
-          android:layout_width="150dp"
-          android:layout_height="150dp"
-          android:text="Button"
-          app:layout_constraintBottom_toBottomOf="parent"
-          app:layout_constraintLeft_toLeftOf="parent"
-          app:layout_constraintRight_toRightOf="parent"
-          app:layout_constraintTop_toTopOf="parent"
-          app:layout_constraintVertical_bias="0.501"
-          tools:layout_editor_absoluteY="124dp"
-          android:background="@android:color/holo_orange_light"/>
+  AnimatorSet animatorSet = new AnimatorSet();
+  animatorSet.playTogether(aniX, aniY);
+  animatorSet.setInterpolator(new DecelerateInterpolator());
+  animatorSet.setDuration(1500);
+  animatorSet.start();
 
-      <Button
-          android:id="@+id/btnSpread"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="SPREAD"
-          app:layout_constraintTop_toTopOf="parent"
-          android:layout_marginTop="8dp"
-          android:layout_marginBottom="8dp"
-          app:layout_constraintVertical_bias="0.017"
-          app:layout_constraintBottom_toBottomOf="parent"
-          android:layout_marginRight="8dp"
-          app:layout_constraintRight_toRightOf="parent"
-          android:layout_marginLeft="8dp"
-          app:layout_constraintLeft_toLeftOf="parent" />
-  </android.support.constraint.ConstraintLayout>
+  /**
+   * Property 애니메이션 처리
+   *
+   * rotation : view 회전
+   */
+  ObjectAnimator aniRotate = ObjectAnimator.ofFloat(
+          view, "rotation", 0f, 720f
+  );
+  aniRotate.setDuration(2000);
+  animatorSet.setInterpolator(new AccelerateInterpolator());
+  aniRotate.start();
   ```
 
-  - MainActivity.java
+### Code Review
+____________________________________________________
+
+- MainActivity.java
+
+  - Cube 의 Animation 을 처리하는 Class 이다.
+
+  - `spreadCube()` 와 `conversionCube()` 를 통해 Animation 을 실행시킨다.
 
   ```java
   public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -237,4 +197,85 @@ ____________________________________________________
           aniRotate.start();
       }
   }
+  ```
+
+- actity_main.xml
+
+  ```xml
+  <?xml version="1.0" encoding="utf-8"?>
+  <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      tools:context="hooooong.com.spreadcubes.MainActivity">
+
+      <Button
+          android:id="@+id/btnCube1"
+          android:layout_width="150dp"
+          android:layout_height="150dp"
+          android:text="Button"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintLeft_toLeftOf="parent"
+          app:layout_constraintRight_toRightOf="parent"
+          app:layout_constraintTop_toTopOf="parent"
+          app:layout_constraintVertical_bias="0.501"
+          tools:layout_editor_absoluteY="124dp"
+          android:textColor="#FFFFFF"
+          android:background="@android:color/black"/>
+
+      <Button
+          android:id="@+id/btnCube2"
+          android:layout_width="150dp"
+          android:layout_height="150dp"
+          android:text="Button"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintLeft_toLeftOf="parent"
+          app:layout_constraintRight_toRightOf="parent"
+          app:layout_constraintTop_toTopOf="parent"
+          app:layout_constraintVertical_bias="0.501"
+          tools:layout_editor_absoluteY="124dp"
+          android:background="@android:color/holo_blue_bright"/>
+
+      <Button
+          android:id="@+id/btnCube3"
+          android:layout_width="150dp"
+          android:layout_height="150dp"
+          android:text="Button"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintLeft_toLeftOf="parent"
+          app:layout_constraintRight_toRightOf="parent"
+          app:layout_constraintTop_toTopOf="parent"
+          app:layout_constraintVertical_bias="0.501"
+          tools:layout_editor_absoluteY="124dp"
+          android:background="@android:color/holo_green_light"/>
+
+      <Button
+          android:id="@+id/btnCube4"
+          android:layout_width="150dp"
+          android:layout_height="150dp"
+          android:text="Button"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintLeft_toLeftOf="parent"
+          app:layout_constraintRight_toRightOf="parent"
+          app:layout_constraintTop_toTopOf="parent"
+          app:layout_constraintVertical_bias="0.501"
+          tools:layout_editor_absoluteY="124dp"
+          android:background="@android:color/holo_orange_light"/>
+
+      <Button
+          android:id="@+id/btnSpread"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="SPREAD"
+          app:layout_constraintTop_toTopOf="parent"
+          android:layout_marginTop="8dp"
+          android:layout_marginBottom="8dp"
+          app:layout_constraintVertical_bias="0.017"
+          app:layout_constraintBottom_toBottomOf="parent"
+          android:layout_marginRight="8dp"
+          app:layout_constraintRight_toRightOf="parent"
+          android:layout_marginLeft="8dp"
+          app:layout_constraintLeft_toLeftOf="parent" />
+  </android.support.constraint.ConstraintLayout>
   ```
